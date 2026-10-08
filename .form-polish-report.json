@@ -1,0 +1,14 @@
+{
+  "entities": {
+    "Testeinträge": {
+      "placeholders_set": 7,
+      "defaults_keys": [
+        "testdatum",
+        "anzahl",
+        "status"
+      ],
+      "computed_keys": [],
+      "reason": "Keine Formel, da es nur eine Zahl ohne Preis oder Datumspaar gibt und die Daten keine sinnvolle Berechnung hergeben."
+    }
+  }
+}

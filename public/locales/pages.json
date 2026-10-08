@@ -1,0 +1,25 @@
+{
+  "pages": {
+    "en": {
+      "Alle {0} Testeinträge sind erledigt.": "All {0} test entries are done.",
+      "Als Nächstes dran: {0}.": "Up next: {0}.",
+      "Als Nächstes fällig": "Next due",
+      "Eintrag": "Entry",
+      "Keine Termine in Sicht.": "No upcoming dates.",
+      "Lege deinen ersten Testeintrag an.": "Create your first test entry.",
+      "Neuer Testeintrag": "New test entry",
+      "Nichts Wichtiges offen.": "Nothing important open.",
+      "Noch nicht erledigt": "Not done yet",
+      "Nächster Schritt": "Next step",
+      "Ohne Titel": "Untitled",
+      "Weiter": "Next",
+      "Wichtig & offen": "Important & open",
+      "Wichtig im Blick": "Important at a glance",
+      "Wichtig und noch offen: {0}.": "Important and still open: {0}.",
+      "{0} — Status geändert": "{0} — status changed",
+      "{0} — weitergeschoben": "{0} — postponed",
+      "Überfällig": "Overdue"
+    }
+  },
+  "v": 1
+}

@@ -1,0 +1,11 @@
+{
+  "TesteintraegeDialog.tsx": {
+    "titel": "z. B. Login-Test",
+    "beschreibung": "Was soll getestet werden?",
+    "vorname": "z. B. Anna",
+    "nachname": "z. B. Müller",
+    "email": "z. B. anna@beispiel.de",
+    "testdatum": "Wann findet der Test statt?",
+    "anzahl": "z. B. 3"
+  }
+}

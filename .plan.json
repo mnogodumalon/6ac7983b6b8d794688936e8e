@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "language": "de",
+  "understanding": {
+    "summary": "Ein kleiner Testbereich, in dem Testeinträge mit Titel, Kontaktdaten, Datum, Anzahl, Status und Wichtigkeitskennzeichen erfasst und verwaltet werden. Der Wunsch „Test“ nennt keine weiteren Aufgaben.",
+    "roles": [
+      "Mitarbeiter im Testbereich"
+    ],
+    "main_tasks": [
+      "Testeinträge anlegen und bearbeiten",
+      "Status von Testeinträgen verfolgen",
+      "Wichtige Einträge im Blick behalten"
+    ],
+    "platform_roles": [
+      {
+        "persona": "Mitarbeiter im Testbereich",
+        "role": "datenverarbeitung",
+        "apps": [
+          "testeintraege"
+        ]
+      }
+    ]
+  },
+  "flows": [
+    {
+      "slug": "testeintrag-anlegen",
+      "label": {
+        "de": "Testeintrag anlegen",
+        "en": "Create test entry"
+      },
+      "description": "Einen neuen Testeintrag mit Kontaktdaten, Datum und Anzahl erfassen. Der Status wird vom System auf „Offen“ gesetzt.",
+      "priority": "must",
+      "writes": [
+        {
+          "entity": "testeintraege",
+          "op": "create",
+          "when": "always",
+          "fields": {
+            "titel": "user",
+            "beschreibung": "user",
+            "vorname": "user",
+            "nachname": "user",
+            "email": "user",
+            "testdatum": "user",
+            "anzahl": "user",
+            "wichtig": "user",
+            "status": "fixed:offen"
+          },
+          "needs": {}
+        }
+      ],
+      "required": [],
+      "brief": "# Flow `testeintrag-anlegen` — Testeintrag anlegen\nEinen neuen Testeintrag mit Kontaktdaten, Datum und Anzahl erfassen. Der Status wird vom System auf „Offen“ gesetzt.\n\n## Your hook — import it, never rebuild what it owns\n`import { useTesteintragAnlegenFlow } from '@/lib/journey/flows/TesteintragAnlegen';` — generated from the Schreibliste below. It OWNS the form(s), one record search per picked field (columns and filter from the plan) and the submit plan with every fixed and derived value. You compose: `flow.forms.<entity>` for <Bound>/<Field>, `{...flow.picks.<field>.select} {...flow.pick('<field>')}` (or `flow.pickMany` for a multi pick) for <EntitySelectStep>, `flow.validateStep(n)` in StepNav.onNext, `flow.submit` + `flow.formList` for SummaryStep/SuccessStep, `flow.reset()`; what the hook does not own reads through its door `flow.port` — availability `useOccupancy(flow.port, '<entity>', { resource })`, a count `useRecordCount(flow.port, …)` — never import servicePort next to the hook. Options: `steps` (field → step), `items` (how a hit reads, per pick), `initial`, `messages`. The hook's docblock in .lane-context.md shows the exact call. Never import servicePort, useStepForm, useJourneySubmit, useRecordSearch or useDashboardData in this page — check-intents refuses a page that uses the hook and any of them.\n\n## Steps (in this order)\n1. Titel und Beschreibung eingeben\n2. Vorname, Nachname und E-Mail-Adresse eingeben\n3. Testdatum, Anzahl und Wichtig-Markierung angeben\n\n## Schreibliste — the ONLY writes this flow makes (the gate compares your plan steps with this list)\n- creates `testeintraege`:\n    - `titel`: the user enters it (bind it through the layer: form.field/…)\n    - `beschreibung`: the user enters it (bind it through the layer: form.field/…)\n    - `vorname`: the user enters it (bind it through the layer: form.field/…)\n    - `nachname`: the user enters it (bind it through the layer: form.field/…)\n    - `email`: the user enters it (bind it through the layer: form.field/…)\n    - `testdatum`: the user enters it (bind it through the layer: form.field/…)\n    - `anzahl`: the user enters it (bind it through the layer: form.field/…)\n    - `wichtig`: the user enters it (bind it through the layer: form.field/…)\n    - `status`: fixed value `offen` — set it in the plan step's values, never ask\n\n## Success page\n- shows: `testeintraege.titel`, `testeintraege.status`\n- next flows to offer: `testeintrag-abschliessen`\n\n## Never write these — another flow or a tool owns them\n"
+    },
+    {
+      "slug": "testeintrag-abschliessen",
+      "label": {
+        "de": "Testeintrag abschließen",
+        "en": "Complete test entry"
+      },
+      "description": "Einen offenen oder in Bearbeitung befindlichen Testeintrag auswählen und auf „Erledigt“ setzen.",
+      "priority": "nice",
+      "writes": [
+        {
+          "entity": "testeintraege",
+          "op": "update",
+          "when": "always",
+          "fields": {
+            "status": "fixed:erledigt"
+          },
+          "needs": {}
+        }
+      ],
+      "required": [],
+      "brief": "# Flow `testeintrag-abschliessen` — Testeintrag abschließen\nEinen offenen oder in Bearbeitung befindlichen Testeintrag auswählen und auf „Erledigt“ setzen.\n\n## Your hook — import it, never rebuild what it owns\n`import { useTesteintragAbschliessenFlow } from '@/lib/journey/flows/TesteintragAbschliessen';` — generated from the Schreibliste below. It OWNS the form(s), one record search per picked field (columns and filter from the plan) and the submit plan with every fixed and derived value. You compose: `flow.forms.<entity>` for <Bound>/<Field>, `{...flow.picks.<field>.select} {...flow.pick('<field>')}` (or `flow.pickMany` for a multi pick) for <EntitySelectStep>, `flow.validateStep(n)` in StepNav.onNext, `flow.submit` + `flow.formList` for SummaryStep/SuccessStep, `flow.reset()`; what the hook does not own reads through its door `flow.port` — availability `useOccupancy(flow.port, '<entity>', { resource })`, a count `useRecordCount(flow.port, …)` — never import servicePort next to the hook. Options: `steps` (field → step), `items` (how a hit reads, per pick), `initial`, `messages`. The hook's docblock in .lane-context.md shows the exact call. This flow CHANGES a record of `testeintraege`: `{...flow.picks.testeintraege.select} {...flow.pick('testeintraege')}` picks it, the hook prefills the form with its current values and updates THAT record — never a create step, never a list from useDashboardData. Never import servicePort, useStepForm, useJourneySubmit, useRecordSearch or useDashboardData in this page — check-intents refuses a page that uses the hook and any of them.\n\n## Steps (in this order)\n1. Offenen Testeintrag aus der Liste wählen\n2. Abschluss bestätigen\n\n## Schreibliste — the ONLY writes this flow makes (the gate compares your plan steps with this list)\n- updates `testeintraege`:\n    - `status`: fixed value `erledigt` — set it in the plan step's values, never ask\n\n## Reads\n- `testeintraege` columns titel, status, testdatum, wichtig\n\n## Success page\n- shows: `testeintraege.titel`, `testeintraege.status`\n- next flows to offer: `testeintrag-anlegen`\n\n## Never write these — another flow or a tool owns them\n- `testeintraege.titel` (owner: intent `testeintrag-anlegen`)\n- `testeintraege.beschreibung` (owner: intent `testeintrag-anlegen`)\n- `testeintraege.vorname` (owner: intent `testeintrag-anlegen`)\n- `testeintraege.nachname` (owner: intent `testeintrag-anlegen`)\n- `testeintraege.email` (owner: intent `testeintrag-anlegen`)\n- `testeintraege.testdatum` (owner: intent `testeintrag-anlegen`)\n- `testeintraege.anzahl` (owner: intent `testeintrag-anlegen`)\n- `testeintraege.wichtig` (owner: intent `testeintrag-anlegen`)\n"
+    }
+  ],
+  "public_pages": [],
+  "tools": [],
+  "covered_by_platform": [
+    {
+      "wish": "Testeinträge anlegen, ändern und löschen",
+      "feature": "record_form"
+    },
+    {
+      "wish": "Testeinträge durchsuchen und filtern",
+      "feature": "search_filter"
+    },
+    {
+      "wish": "Übersicht der Testeinträge pro Status",
+      "feature": "distribution_view"
+    }
+  ],
+  "ownership": {
+    "testeintraege": {
+      "titel": "intent:testeintrag-anlegen",
+      "beschreibung": "intent:testeintrag-anlegen",
+      "vorname": "intent:testeintrag-anlegen",
+      "nachname": "intent:testeintrag-anlegen",
+      "email": "intent:testeintrag-anlegen",
+      "testdatum": "intent:testeintrag-anlegen",
+      "anzahl": "intent:testeintrag-anlegen",
+      "wichtig": "intent:testeintrag-anlegen",
+      "status": "intent:testeintrag-abschliessen"
+    }
+  },
+  "dashboard": {
+    "focus": [
+      "Testeinträge nach Status",
+      "Wichtige Testeinträge",
+      "Offene Testeinträge"
+    ],
+    "hints": [
+      "Der Status zeigt, wie weit ein Testeintrag ist.",
+      "Die Markierung „Wichtig“ hebt dringende Einträge hervor."
+    ],
+    "wishes": []
+  }
+}
