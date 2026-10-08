@@ -20,6 +20,7 @@
 import type { ComponentType } from 'react';
 
 // <custom:intent-imports>
+import { IconPlus, IconCheckbox } from '@tabler/icons-react';
 // </custom:intent-imports>
 
 export interface IntentLink {
@@ -42,6 +43,8 @@ export interface IntentLink {
 
 export const INTENTS: IntentLink[] = [
   // <custom:intents>
+  { path: '/intents/testeintrag-anlegen', label: { de: 'Testeintrag anlegen', en: 'Create test entry' }, icon: IconPlus, description: 'Neuen Testeintrag mit Kontaktdaten, Datum und Anzahl erfassen' },
+  { path: '/intents/testeintrag-abschliessen', label: { de: 'Testeintrag abschließen', en: 'Complete test entry' }, icon: IconCheckbox, description: 'Offenen Testeintrag auswählen und auf Erledigt setzen' },
   // </custom:intents>
 ];
 
@@ -52,7 +55,7 @@ export const INTENTS: IntentLink[] = [
  * purpose — a scaffold update resets it to false (self-healing if Phase 2
  * never ran).
  */
-export const INTENTS_PENDING = true;
+export const INTENTS_PENDING = false;
 
 /**
  * When the Phase-1 bundle was deployed (ISO, set by the service together with
